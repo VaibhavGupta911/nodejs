@@ -12,11 +12,13 @@ const server = http.createServer(
 
         }
         else if (req.url == "/userapi") {
-            fs.readFile('userapi.json', 'utf-8', (err, data) => { console.log(data) 
-                res.end(data) }
-          
+            fs.readFile('userapi.json', 'utf-8', (err, data) => {
+                console.log(data)
+                //res.end(data)
+                const object = JSON.parse(data)
+                res.end(object[0].name)
+            }
             )
-
         }
         else {
             res.writeHead(404, { "content-type": 'text/html' })
